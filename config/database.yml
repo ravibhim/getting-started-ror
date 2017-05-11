@@ -1,0 +1,11 @@
+development:
+    adapter: mysql2
+    encoding: utf8
+    database: getting_started_ror
+    username: root
+
+test:
+    adapter: mysql2
+    encoding: utf8
+    database: getting_started_ror_test
+    username: root

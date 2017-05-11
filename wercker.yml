@@ -1,0 +1,34 @@
+box:
+  id: phusion/passenger-ruby22
+
+services:
+  - id: mysql
+    env:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: 'getting_started_ror'
+      MYSQL_USER: 'rubyon'
+      MYSQL_PASSWORD: 'rails'
+
+build:
+  steps:
+    - script:
+      name: install bundler gem
+      code: gem install bundler
+    - bundle-install
+    - rails-database-yml
+    - script:
+      name: print env
+      code: env | grep MYSQL
+    - script:
+      name: set rails environment
+      code: export RAILS_ENV=test
+    - script:
+      name: setup database
+      code: bundle exec rake db:create
+    - script:
+      name: load schema
+      code: bundle exec rake db:schema:load
+    - script:
+      name: run tests
+      code: bundle exec rake
+
