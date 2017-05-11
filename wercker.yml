@@ -17,7 +17,7 @@ build:
     - bundle-install
     - rails-database-yml
     - script:
-      name: print env
+      name: print MYSQL env
       code: env | grep MYSQL
     - script:
       name: set rails environment
